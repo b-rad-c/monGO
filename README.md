@@ -10,23 +10,23 @@ Use env variable `MONGODB_URI` to set the mongo uri, if unset `mongodb://localho
     connecting to: mongodb://localhost:27017
     Successfully pinged!
 
-The available commands are
-##### ping
-test that the connection is working
-##### count
-count the number of database entries
-##### insert
-generate a random entry
-##### insertMany
-generate `-num=<int>` random entires
-##### view
-retrieve object with object id: `-id`
-##### list
-list objects with default sort, use `-limit=<int>` and `-offset=<int>` for pagination
-##### delete
-delete object with object id: `-id`
-##### filter
-Search for objects; use `-filter=<field name>` to set the search field and `-term=<value>` to define the search term. Use `-sort=<field name>` to define the field to use for sorting and `-dir=<ASC|DESC>` to specificy ascending or descending sort. And use `-limit=<int>` and `-offset=<int>` for pagination.
+The available commands are:
+
+**ping** - test that the connection is working
+
+**count** - count the number of database entries
+
+**insert** - generate a random entry
+
+**insertMany** - generate `-num=<int>` random entires
+
+**view** - retrieve object with object id: `-id`
+
+**list** - list objects with default sort, use `-limit=<int>` and `-offset=<int>` for pagination
+
+**delete** - delete object with object id: `-id`
+
+**filter** - search for objects; use `-filter=<field name>` to set the search field and `-term=<value>` to define the search term. Use `-sort=<field name>` to define the field to use for sorting and `-dir=<ASC|DESC>` to specificy ascending or descending sort. And use `-limit=<int>` and `-offset=<int>` for pagination.
 
 ### Example
 ##### generate entries
