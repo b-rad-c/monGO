@@ -1,34 +1,34 @@
 # monGO
 A cli showing basic usage of the offical go driver for mongo db.
 
-##Usage
-###uri
+## Usage
+### uri
 Use env variable `MONGODB_URI` to set the mongo uri, if unset `mongodb://localhost:27017` is used by default.
 
-###commands
+### commands
     $ ./main -cmd=ping
     connecting to: mongodb://localhost:27017
     Successfully pinged!
 
 The available commands are
-#####ping
+##### ping
 test that the connection is working
-#####count
+##### count
 count the number of database entries
-#####insert
+##### insert
 generate a random entry
-#####insertMany
+##### insertMany
 generate `-num=<int>` random entires
-#####view
+##### view
 retrieve object with object id: `-id`
-#####list
+##### list
 list objects with default sort, use `-limit=<int>` and `-offset=<int>` for pagination
-#####delete
+##### delete
 delete object with object id: `-id`
-#####filter
+##### filter
 Search for objects; use `-filter=<field name>` to set the search field and `-term=<value>` to define the search term. Use `-sort=<field name>` to define the field to use for sorting and `-dir=<ASC|DESC>` to specificy ascending or descending sort. And use `-limit=<int>` and `-offset=<int>` for pagination.
 
-###Example
+### Example
 ##### generate entries
     $ ./main -cmd=insertMany -num 15
     connecting to: mongodb://localhost:27017
