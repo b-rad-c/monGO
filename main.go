@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"math/rand"
+	"os"
 	"strings"
 	"time"
 
@@ -19,7 +20,6 @@ import (
 // db
 //
 
-const uri = "mongodb://localhost:27017"
 const db = "mongoExample"
 const collection = "students"
 
@@ -70,7 +70,7 @@ func viewStudent(students *mongo.Collection, id *string) {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(result)
+	fmt.Println(result.show())
 }
 
 func deleteStudent(students *mongo.Collection, id *string) {
@@ -112,7 +112,7 @@ func listStudents(students *mongo.Collection, limit *int64, offset *int64) {
 			panic(err)
 		}
 
-		fmt.Println(result)
+		fmt.Println(result.show())
 	}
 	if err := cursor.Err(); err != nil {
 		panic(err)
@@ -140,7 +140,7 @@ func filterStudents(students *mongo.Collection, limit *int64, offset *int64, sor
 			panic(err)
 		}
 
-		fmt.Println(result)
+		fmt.Println(result.show())
 	}
 	if err := cursor.Err(); err != nil {
 		panic(err)
@@ -157,6 +157,10 @@ type Address struct {
 	State  string `bson:"state"`
 }
 
+func (a *Address) show() string {
+	return fmt.Sprintf("%10s %4s", a.City, a.State)
+}
+
 type Student struct {
 	ID        primitive.ObjectID `bson:"_id,omitempty"`
 	FirstName string             `bson:"first_name"`
@@ -165,12 +169,16 @@ type Student struct {
 	Age       int                `bson:"age,omitempty"`
 }
 
+func (s *Student) show() string {
+	return fmt.Sprintf("%s %10s %10s %s", s.ID.Hex(), s.FirstName, s.LastName, s.Address.show())
+}
+
 func randomElement(input []string) string {
 	return input[rand.Intn(len(input)-1)]
 }
 
 func generateStudent() Student {
-	firstNames := []string{"Ashley", "Brad", "Laura", "John", "Michael", "Alice", "Heater", "Alfred"}
+	firstNames := []string{"Ashley", "Brad", "Laura", "John", "Michael", "Alice", "Heather", "Alfred"}
 	lastNames := []string{"Smith", "Johnson", "Peterson", "Simpson", "Armstrong"}
 	streets := []string{"Belmont", "Main", "Lakewood", "Burnside", "Elmwood"}
 	cities := []string{"Portland", "Gresham", "Vancouver"}
@@ -192,6 +200,11 @@ func main() {
 	//
 	// init connection
 	//
+
+	uri := os.Getenv("MONGODB_URI")
+	if uri == "" {
+		uri = "mongodb://localhost:27017"
+	}
 
 	fmt.Println("connecting to:", uri)
 
