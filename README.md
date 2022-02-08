@@ -20,11 +20,11 @@ The available commands are:
 
 **insertMany** - generate `-num=<int>` random entires
 
-**view** - retrieve object with object id: `-id`
+**view** - retrieve object with object id: `-id=<string>`
 
 **list** - list objects with default sort, use `-limit=<int>` and `-offset=<int>` for pagination
 
-**delete** - delete object with object id: `-id`
+**delete** - delete object with object id: `-id=<string>`
 
 **filter** - search for objects; use `-filter=<field name>` to set the search field and `-term=<value>` to define the search term. Use `-sort=<field name>` to define the field to use for sorting and `-dir=<ASC|DESC>` to specificy ascending or descending sort. And use `-limit=<int>` and `-offset=<int>` for pagination.
 
